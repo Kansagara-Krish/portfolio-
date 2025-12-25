@@ -854,6 +854,7 @@
           const section = document.getElementById(id);
           if (!section) return;
 
+          // lower threshold and negative top rootMargin to account for fixed nav on small screens
           const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
@@ -862,14 +863,16 @@
                 obs.unobserve(section);
               }
             });
-          }, { threshold: 0.2 });
+          }, {
+            threshold: 0.05,
+            rootMargin: "-96px 0px -10% 0px"
+          });
 
           observer.observe(section);
         });
       }
 
       function initializeVoiceControls() {
-        // Voice control buttons will be added dynamically
         const voiceControlsHTML = `
           <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
             <button id="voice-speed-up" class="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform" title="Increase voice speed">
@@ -1288,7 +1291,7 @@
           utterance.voice = strongVoice;
           // STRONG MALE VOICE SETTINGS:
           utterance.pitch = 0.9;      // Lower pitch for deeper voice
-          utterance.rate = 0.97;       // Slightly slower for authority
+          utterance.rate = 0.99;       // Slightly slower for authority
           utterance.volume = 0.8;      // Full volume
 
           console.log("Using strong voice:", strongVoice.name);
@@ -1404,11 +1407,7 @@
     <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-12 font-display">Technical Skills</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <!-- <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-code text-3xl mb-3 text-indigo-400"></i>
-          <h3 class="font-semibold">Frontend</h3>
-          <p class="text-sm text-gray-400 mt-2">React, Next.js, Tailwind</p>
-        </div> -->
+
         <div class="skill-card rounded-xl p-6 text-center hover-lift">
           <i class="ph-database text-3xl mb-3 text-purple-400"></i>
           <h3 class="font-semibold">Web Development</h3>
@@ -1420,21 +1419,11 @@
           <p class="text-sm text-gray-400 mt-2">Python,Pandas, NumPy,Scikit-learn, CNNs, Data
             Preprocessing,Matplotlib , Seaborn </p>
         </div>
-        <!-- <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-palette text-3xl mb-3 text-blue-400"></i>
-          <h3 class="font-semibold">Design</h3>
-          <p class="text-sm text-gray-400 mt-2">Figma</p>
-        </div> -->
         <div class="skill-card rounded-xl p-6 text-center hover-lift">
           <i class="ph-git-branch text-3xl mb-3 text-green-400"></i>
           <h3 class="font-semibold">Artificial Intelligence</h3>
           <p class="text-sm text-gray-400 mt-2">LangChain, LangGraph</p>
         </div>
-        <!-- <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-cloud text-3xl mb-3 text-yellow-400"></i>
-          <h3 class="font-semibold">Cloud</h3>
-          <p class="text-sm text-gray-400 mt-2">AWS, Vercel</p>
-        </div> -->
         <div class="skill-card rounded-xl p-6 text-center hover-lift">
           <i class="ph-leaf text-3xl mb-3 text-teal-400"></i>
           <h3 class="font-semibold">Databases</h3>
@@ -1489,10 +1478,10 @@
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Numpy</span>
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Pandas</span>
           </div>
-          <div class="flex gap-3">
+          <div class="flex justify-center">
             <a href="https://colab.research.google.com/drive/1gECrIEp1EXrGzUvMQqKh5gErNORrxhBy?usp=sharing"
               target="_blank"
-              class="flex-1 text-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition-colors">
+              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
               <i class="ph-github-logo mr-1"></i>View Code
             </a>
           </div>
@@ -1541,9 +1530,9 @@
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">XGBOOST</span>
           </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex justify-center">
             <a href="https://quick-delas-ai-powerd-smart-shopping.onrender.com"
-              class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm">
+              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
               Open Dashboard
             </a>
           </div>
@@ -1569,9 +1558,9 @@
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Team work</span>
           </div>
 
-          <div class="flex items-center gap-3">
-            <a href="https://quick-delas-ai-powerd-smart-shopping.onrender.com"
-              class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm">
+          <div class="flex justify-center">
+            <a href="https://krushi-seva1.vercel.app/"
+              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
               Visit Website
             </a>
           </div>
@@ -1593,14 +1582,10 @@
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">CSS</span>
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Tailwind</span>
           </div>
-          <div class="flex gap-3">
+          <div class="flex justify-center">
             <a href="https://github.com/Kansagara-Krish/portfolio-" target="_blank"
-              class="flex-1 text-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition-colors">
+              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
               <i class="ph-github-logo mr-1"></i>View Code
-            </a>
-            <a href="#" target="_blank"
-              class="flex-1 text-center px-4 py-2 bg-rose-600 hover:bg-rose-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-arrow-up-right mr-1"></i>Live Demo
             </a>
           </div>
         </div>
