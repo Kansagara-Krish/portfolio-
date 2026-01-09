@@ -21,8 +21,8 @@ https://p-psi-six.vercel.app/
 ![Skills Section](images/readme_images/skills.png)
 
 ### 💼 Projects Section
-![Projects Section](images/readme_images/project_1_1.png)
-![Projects Section](images/readme_images/project_1_2.png)
+![Projects Section](images/readme_images/Project_1_1.png)
+![Projects Section](images/readme_images/Project_1_2.png)
 
 ### 🎓 Certificates Section
 ![Certificates Section](images/readme_images/certificates.png)
