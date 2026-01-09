@@ -1,879 +1,880 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" type="image/png" href="images/logo.jpg">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krish's Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <style>
-    :root {
-      --primary-900: #0f0f23;
-      --primary-800: #1a1a2e;
-      --primary-700: #16213e;
-      --accent-600: #6366f1;
-      --accent-500: #8b5cf6;
-      --accent-400: #a78bfa;
-      --text-100: #f8fafc;
-      --text-200: #e2e8f0;
-      --text-300: #cbd5e1;
-      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --neon-1: #00ffff;
-      --neon-2: #ff00ff;
-      --neon-3: #ffff00;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    html::-webkit-scrollbar {
-      display: none;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--primary-900);
-      color: var(--text-100);
-      line-height: 1.6;
-      background: var(--primary-900);
-      transition: background 0.6s ease;
-    }
-
-
-
-    .font-display {
-      font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .glass-effect {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .gradient-text {
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hover-lift {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hover-lift:hover {
-      transform: translateY(-5px);
-    }
-
-    .skill-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-      border: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .project-card {
-      background: rgba(26, 26, 46, 0.8);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent-400);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
-    }
-
-    .btn-primary {
-      background: var(--gradient-1);
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-    }
-
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-400), transparent);
-    }
-
-    /* Hero Section Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes pulse-glow {
-
-      0%,
-      100% {
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-      }
-
-      50% {
-        box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes shimmer {
-      0% {
-        background-position: -200% 0;
-      }
-
-      100% {
-        background-position: 200% 0;
-      }
-    }
-
-    .animate-fadeInUp {
-      animation: fadeInUp 2s ease-out forwards;
-    }
-
-    .animate-fadeInDown {
-      animation: fadeInDown 2s ease-out forwards;
-    }
-
-    .animate-scaleIn {
-      animation: scaleIn 0.8s ease-out forwards;
-    }
-
-    .animate-float {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .animate-pulse-glow {
-      animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    .animate-slideInLeft {
-      animation: slideInLeft 1s ease-out forwards;
-    }
-
-    .animate-slideInRight {
-      animation: slideInRight 1s ease-out forwards;
-    }
-
-    .shimmer-text {
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      background-size: 200% 100%;
-      animation: shimmer 2s infinite;
-    }
-
-    .stagger-1 {
-      animation-delay: 0.1s;
-    }
-
-    .stagger-2 {
-      animation-delay: 0.2s;
-    }
-
-    .stagger-3 {
-      animation-delay: 0.3s;
-    }
-
-    .stagger-4 {
-      animation-delay: 0.4s;
-    }
-
-    .stagger-5 {
-      animation-delay: 0.5s;
-    }
-
-    .profile-image {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .profile-image::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transform: rotate(45deg);
-      animation: shimmer 3s infinite;
-    }
-
-    .social-link {
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-link:hover {
-      transform: translateY(-5px) scale(1.1);
-      filter: drop-shadow(0 5px 15px rgba(99, 102, 241, 0.5));
-    }
-
-    .social-link::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
-      transition: all 0.3s ease;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-    }
-
-    .social-link:hover::before {
-      width: 100px;
-      height: 100px;
-    }
-
-    .hero-bg-animation {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .floating-element {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .floating-element:nth-child(1) {
-      width: 80px;
-      height: 80px;
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .floating-element:nth-child(2) {
-      width: 120px;
-      height: 120px;
-      top: 60%;
-      right: 15%;
-      animation-delay: 2s;
-    }
-
-    .floating-element:nth-child(3) {
-      width: 60px;
-      height: 60px;
-      top: 80%;
-      left: 20%;
-      animation-delay: 4s;
-    }
-
-    /*Krish's additional code*/
-
-    .typewriter {
-      overflow: hidden;
-      border-right: 2px solid #fff;
-      display: inline-block;
-
-      /* cursor effect */
-      white-space: nowrap;
-      animation: typing 5s steps(50, end), blink 0.7s step-end infinite;
-    }
-
-    .typewriter.typing {
-      animation: blinkCursor 0.7s step-end infinite;
-    }
-
-    @keyframes typing {
-      from {
-        width: 0
-      }
-
-      to {
-        width: 100%
-      }
-    }
-
-
-    @keyframes blinkCursor {
-
-      0%,
-      100% {
-        border-color: transparent;
-      }
-
-      50% {
-        border-color: white;
-      }
-    }
-
-    @keyframes blink {
-
-      from,
-      to {
-        border-color: transparent
-      }
-
-      50% {
-        border-color: white
-      }
-    }
-
-    .hi-text span {
-      opacity: 0;
-      display: inline-block;
-      animation: letterReveal 0.05s forwards;
-    }
-
-    @keyframes letterReveal {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes scaleInGlow {
-      0% {
-        transform: scale(0.8);
-        opacity: 0;
-        box-shadow: 0 0 0px rgba(99, 102, 241, 0.5);
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-        box-shadow: 0 0 25px rgba(99, 102, 241, 0.7);
-      }
-    }
-
-    .profile-pic {
-      animation: scaleInGlow 1.5s ease forwards;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-8px);
-      }
-    }
-
-    .float {
-      animation: float 4s ease-in-out infinite;
-    }
-
-    .animate-hi {
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeSlideDown 1s forwards;
-    }
-
-    .animate-name {
-      opacity: 0;
-      transform: scale(0.8);
-      animation: scaleIn 1s forwards 0.5s;
-      /* 1s delay to appear after Hi */
-    }
-
-    @keyframes fadeSlideDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Animate the whole div */
-    .profile-container {
-      perspective: 1000px;
-      /* Needed for 3D effect */
-      width: 150px;
-      height: 150px;
-      margin: 50px auto;
-    }
-
-    .profile-pic {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 4px solid rgba(99, 102, 241, 0.5);
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
-      transform-style: preserve-3d;
-      animation: coinFlip 4s ease forwards, scaleInGlow 3s ease-in-out infinite;
-      animation-delay: 0s, 5s;
-      animation-fill-mode: forwards, none;
-    }
-
-    @keyframes scaleInGlow {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
-      }
-
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 30px rgba(99, 102, 241, 1);
-      }
-
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
-      }
-    }
-
-
-    /* Coin flip animation */
-    @keyframes coinFlip {
-      0% {
-        transform: rotateY(0deg) rotateX(0deg) scale(0.8);
-        opacity: 0;
-      }
-
-      50% {
-        transform: rotateY(180deg) rotateX(0deg) scale(1.1);
-        opacity: 1;
-      }
-
-      75% {
-        transform: rotateY(360deg) rotateX(0deg) scale(0.95);
-      }
-
-      100% {
-        transform: rotateY(0deg) rotateX(0deg) scale(1);
-      }
-    }
-
-
-    @keyframes waveHand {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      15% {
-        transform: rotate(14deg);
-      }
-
-      30% {
-        transform: rotate(-8deg);
-      }
-
-      45% {
-        transform: rotate(14deg);
-      }
-
-      60% {
-        transform: rotate(-4deg);
-      }
-
-      75% {
-        transform: rotate(10deg);
-      }
-
-      100% {
-        transform: rotate(0deg);
-      }
-    }
-
-    #bg-color {
-      background-color: var(--primary-900);
-      background-size: 200% 200%;
-      transition: background-position 4.5s ease, filter 0.6s ease;
-    }
-
-    #bg-color.light {
-      filter: brightness(0.3);
-      background-position: right bottom;
-    }
-
-    /* ---------- Profile pic hover + coin flip + glow ---------- */
-    .profile-container {
-      perspective: 1000px;
-      width: 150px;
-      height: 150px;
-      margin: 50px auto;
-    }
-
-    .profile-pic {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 4px solid rgba(99, 102, 241, 0.5);
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
-      transform-style: preserve-3d;
-      animation: coinFlip 4s ease forwards, scaleInGlow 3s ease-in-out infinite;
-      animation-delay: 0s, 5s;
-      animation-fill-mode: forwards, none;
-    }
-
-    @keyframes scaleInGlow {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
-      }
-
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 30px rgba(99, 102, 241, 1);
-      }
-
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
-      }
-    }
-
-    .wave {
-      display: inline-block;
-      transform-origin: 70% 70%;
-      animation: waveHand 1.5s ease-in-out 4.5s 2;
-    }
-
-    /*button animation*/
-    .btn-intro {
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-      border-radius: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: rgba(79, 70, 229, 1);
-      /* indigo-500 */
-      color: #fff;
-      font-weight: 600;
-      border: 1px solid rgba(99, 102, 241, 0.12);
-      box-shadow: 0 8px 22px rgba(79, 70, 229, 0.12);
-      transition: transform 200ms cubic-bezier(.2, .9, .3, 1), box-shadow 200ms, background 200ms;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-intro:hover {
-      transform: translateY(-6px) scale(1.02);
-      background: rgba(79, 70, 229, 0.98);
-      box-shadow: 0 18px 40px rgba(99, 102, 241, 0.16), 0 6px 12px rgba(99, 102, 241, 0.06);
-    }
-
-    .btn-intro:focus {
-      outline: none;
-      box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.09), 0 12px 30px rgba(99, 102, 241, 0.12);
-    }
-
-    .btn-intro:active,
-    .btn-intro.btn-clicked {
-      transform: translateY(-2px) scale(0.995);
-      transition: transform 120ms;
-    }
-
-    /* soft glow overlay for hover */
-    .btn-intro::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      box-shadow: 0 0 0 rgba(99, 102, 241, 0);
-      transition: box-shadow 220ms;
-    }
-
-    .btn-intro:hover::after {
-      box-shadow: 0 0 36px rgba(99, 102, 241, 0.18);
-    }
-
-    /* ripple */
-    .btn-intro .ripple {
-      position: absolute;
-      border-radius: 50%;
-      transform: scale(0);
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.28), rgba(99, 102, 241, 0.12));
-      pointer-events: none;
-      animation: ripple 600ms linear;
-      will-change: transform, opacity;
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-
-    /* small accessible text variant */
-    .btn-intro .visually-hidden {
-      position: absolute !important;
-      height: 1px;
-      width: 1px;
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
-    }
-
-    .light {
-      background: white;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Add to your existing CSS */
-    .btn-stop {
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-      border-radius: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: rgba(239, 68, 68, 1);
-      /* red-500 */
-      color: #fff;
-      font-weight: 600;
-      border: 1px solid rgba(239, 68, 68, 0.12);
-      box-shadow: 0 8px 22px rgba(246, 52, 52, 0.12);
-      transition: transform 200ms cubic-bezier(.2, .9, .3, 1), box-shadow 200ms, background 200ms;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      margin-left: 10px;
-    }
-
-    .btn-stop:hover {
-      transform: translateY(-6px) scale(1.02);
-      background: rgba(208, 101, 101, 0.98);
-      box-shadow: 0 18px 40px rgba(239, 68, 68, 0.16), 0 6px 12px rgba(239, 68, 68, 0.06);
-    }
-
-    .btn-stop:focus {
-      outline: none;
-      box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.09), 0 12px 30px rgba(239, 68, 68, 0.12);
-    }
-
-    .btn-stop:active,
-    .btn-stop.btn-clicked {
-      transform: translateY(-2px) scale(0.995);
-      transition: transform 120ms;
-    }
-
-    .btn-stop::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      box-shadow: 0 0 0 rgba(239, 68, 68, 0);
-      transition: box-shadow 220ms;
-    }
-
-    .btn-stop:hover::after {
-      box-shadow: 0 0 36px rgba(239, 68, 68, 0.18);
-    }
-
-    .btn-stop .ripple {
-      position: absolute;
-      border-radius: 50%;
-      transform: scale(0);
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.28), rgba(239, 68, 68, 0.12));
-      pointer-events: none;
-      animation: ripple 600ms linear;
-      will-change: transform, opacity;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
-  <script>
-    // Global state variables
-    let currentStep = 0;
-    let steps = [];
-    let isIntroductionActive = false;
-    let currentUtterance = null;
-    let speechRate = 0.85;
-    let speechPitch = 0.9;
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // DOM Elements
-      const profilePic = document.querySelector(".profile-pic");
-      const bgColor = document.getElementById("bg-color");
-      const wave = document.querySelector(".wave");
-      const nav = document.getElementById("mainNav");
-      const introBtn = document.getElementById('intro-btn');
-      const stopBtn = document.getElementById('stop-btn');
-
-      // Initialize event listeners
-      initializeEventListeners();
-
-      function initializeEventListeners() {
-        // Introduction/Stop buttons
-        if (introBtn) {
-          introBtn.addEventListener('click', handleIntroClick);
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krish's Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --primary-900: #0f0f23;
+            --primary-800: #1a1a2e;
+            --primary-700: #16213e;
+            --accent-600: #6366f1;
+            --accent-500: #8b5cf6;
+            --accent-400: #a78bfa;
+            --text-100: #f8fafc;
+            --text-200: #e2e8f0;
+            --text-300: #cbd5e1;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --neon-1: #00ffff;
+            --neon-2: #ff00ff;
+            --neon-3: #ffff00;
         }
 
-        if (stopBtn) {
-          stopBtn.addEventListener('click', handleStopClick);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        // Profile hover effect
-        if (profilePic && bgColor && nav) {
-          profilePic.addEventListener("mouseenter", handleProfileMouseEnter);
-          profilePic.addEventListener("mouseleave", handleProfileMouseLeave);
+        html {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        // Show wave after coin flip animation ends
-        if (profilePic && wave) {
-          profilePic.addEventListener("animationend", handleProfileAnimationEnd);
+        html::-webkit-scrollbar {
+            display: none;
         }
 
-        // Scroll reveal animation for sections
-        initializeScrollReveal();
-
-        // Initialize voice controls
-        initializeVoiceControls();
-      }
-
-      function handleIntroClick(e) {
-        createRipple(introBtn, e);
-        toggleButtons();
-        startIntroductionSequence();
-      }
-
-      function handleStopClick(e) {
-        createRipple(stopBtn, e);
-        stopIntroductionSequence();
-        toggleButtons();
-      }
-
-      function handleProfileMouseEnter() {
-        bgColor.classList.add("light");
-        nav.classList.add("opacity-0");
-      }
-
-      function handleProfileMouseLeave() {
-        bgColor.classList.remove("light");
-        nav.classList.remove("opacity-0");
-      }
-
-      function handleProfileAnimationEnd(e) {
-        if (e.animationName === "coinFlip") {
-          wave.classList.remove("opacity-0");
-          wave.classList.add("opacity-100");
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-900);
+            color: var(--text-100);
+            line-height: 1.6;
+            background: var(--primary-900);
+            transition: background 0.6s ease;
         }
-      }
 
-      function initializeScrollReveal() {
-        const sections = ["skills", "projects", "certificates"];
-        sections.forEach(id => {
-          const section = document.getElementById(id);
-          if (!section) return;
 
-          // lower threshold and negative top rootMargin to account for fixed nav on small screens
-          const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                section.classList.remove("opacity-0", "translate-y-10");
-                section.classList.add("opacity-100", "translate-y-0");
-                obs.unobserve(section);
-              }
-            });
-          }, {
-            threshold: 0.05,
-            rootMargin: "-96px 0px -10% 0px"
-          });
 
-          observer.observe(section);
-        });
-      }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
-      function initializeVoiceControls() {
-        const voiceControlsHTML = `
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .project-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-400);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-400), transparent);
+        }
+
+        /* Hero Section Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 2s ease-out forwards;
+        }
+
+        .animate-fadeInDown {
+            animation: fadeInDown 2s ease-out forwards;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+
+        .profile-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        .social-link {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            filter: drop-shadow(0 5px 15px rgba(99, 102, 241, 0.5));
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .social-link:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /*Krish's additional code*/
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #fff;
+            display: inline-block;
+
+            /* cursor effect */
+            white-space: nowrap;
+            animation: typing 5s steps(50, end), blink 0.7s step-end infinite;
+        }
+
+        .typewriter.typing {
+            animation: blinkCursor 0.7s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+
+        @keyframes blinkCursor {
+
+            0%,
+            100% {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: white;
+            }
+        }
+
+        @keyframes blink {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: white
+            }
+        }
+
+        .hi-text span {
+            opacity: 0;
+            display: inline-block;
+            animation: letterReveal 0.05s forwards;
+        }
+
+        @keyframes letterReveal {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleInGlow {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+                box-shadow: 0 0 0px rgba(99, 102, 241, 0.5);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 25px rgba(99, 102, 241, 0.7);
+            }
+        }
+
+        .profile-pic {
+            animation: scaleInGlow 1.5s ease forwards;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-hi {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeSlideDown 1s forwards;
+        }
+
+        .animate-name {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: scaleIn 1s forwards 0.5s;
+            /* 1s delay to appear after Hi */
+        }
+
+        @keyframes fadeSlideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animate the whole div */
+        .profile-container {
+            perspective: 1000px;
+            /* Needed for 3D effect */
+            width: 150px;
+            height: 150px;
+            margin: 50px auto;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+            transform-style: preserve-3d;
+            animation: coinFlip 4s ease forwards, scaleInGlow 3s ease-in-out infinite;
+            animation-delay: 0s, 5s;
+            animation-fill-mode: forwards, none;
+        }
+
+        @keyframes scaleInGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(99, 102, 241, 1);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+            }
+        }
+
+
+        /* Coin flip animation */
+        @keyframes coinFlip {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg) scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                transform: rotateY(180deg) rotateX(0deg) scale(1.1);
+                opacity: 1;
+            }
+
+            75% {
+                transform: rotateY(360deg) rotateX(0deg) scale(0.95);
+            }
+
+            100% {
+                transform: rotateY(0deg) rotateX(0deg) scale(1);
+            }
+        }
+
+
+        @keyframes waveHand {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            15% {
+                transform: rotate(14deg);
+            }
+
+            30% {
+                transform: rotate(-8deg);
+            }
+
+            45% {
+                transform: rotate(14deg);
+            }
+
+            60% {
+                transform: rotate(-4deg);
+            }
+
+            75% {
+                transform: rotate(10deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        #bg-color {
+            background-color: var(--primary-900);
+            background-size: 200% 200%;
+            transition: background-position 4.5s ease, filter 0.6s ease;
+        }
+
+        #bg-color.light {
+            filter: brightness(0.3);
+            background-position: right bottom;
+        }
+
+        /* ---------- Profile pic hover + coin flip + glow ---------- */
+        .profile-container {
+            perspective: 1000px;
+            width: 150px;
+            height: 150px;
+            margin: 50px auto;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+            transform-style: preserve-3d;
+            animation: coinFlip 4s ease forwards, scaleInGlow 3s ease-in-out infinite;
+            animation-delay: 0s, 5s;
+            animation-fill-mode: forwards, none;
+        }
+
+        @keyframes scaleInGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(99, 102, 241, 1);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.7);
+            }
+        }
+
+        .wave {
+            display: inline-block;
+            transform-origin: 70% 70%;
+            animation: waveHand 1.5s ease-in-out 4.5s 2;
+        }
+
+        /*button animation*/
+        .btn-intro {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(79, 70, 229, 1);
+            /* indigo-500 */
+            color: #fff;
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.12);
+            box-shadow: 0 8px 22px rgba(79, 70, 229, 0.12);
+            transition: transform 200ms cubic-bezier(.2, .9, .3, 1), box-shadow 200ms, background 200ms;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-intro:hover {
+            transform: translateY(-6px) scale(1.02);
+            background: rgba(79, 70, 229, 0.98);
+            box-shadow: 0 18px 40px rgba(99, 102, 241, 0.16), 0 6px 12px rgba(99, 102, 241, 0.06);
+        }
+
+        .btn-intro:focus {
+            outline: none;
+            box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.09), 0 12px 30px rgba(99, 102, 241, 0.12);
+        }
+
+        .btn-intro:active,
+        .btn-intro.btn-clicked {
+            transform: translateY(-2px) scale(0.995);
+            transition: transform 120ms;
+        }
+
+        /* soft glow overlay for hover */
+        .btn-intro::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow: 0 0 0 rgba(99, 102, 241, 0);
+            transition: box-shadow 220ms;
+        }
+
+        .btn-intro:hover::after {
+            box-shadow: 0 0 36px rgba(99, 102, 241, 0.18);
+        }
+
+        /* ripple */
+        .btn-intro .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.28), rgba(99, 102, 241, 0.12));
+            pointer-events: none;
+            animation: ripple 600ms linear;
+            will-change: transform, opacity;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* small accessible text variant */
+        .btn-intro .visually-hidden {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
+        }
+
+        .light {
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Add to your existing CSS */
+        .btn-stop {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(239, 68, 68, 1);
+            /* red-500 */
+            color: #fff;
+            font-weight: 600;
+            border: 1px solid rgba(239, 68, 68, 0.12);
+            box-shadow: 0 8px 22px rgba(246, 52, 52, 0.12);
+            transition: transform 200ms cubic-bezier(.2, .9, .3, 1), box-shadow 200ms, background 200ms;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            margin-left: 10px;
+        }
+
+        .btn-stop:hover {
+            transform: translateY(-6px) scale(1.02);
+            background: rgba(208, 101, 101, 0.98);
+            box-shadow: 0 18px 40px rgba(239, 68, 68, 0.16), 0 6px 12px rgba(239, 68, 68, 0.06);
+        }
+
+        .btn-stop:focus {
+            outline: none;
+            box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.09), 0 12px 30px rgba(239, 68, 68, 0.12);
+        }
+
+        .btn-stop:active,
+        .btn-stop.btn-clicked {
+            transform: translateY(-2px) scale(0.995);
+            transition: transform 120ms;
+        }
+
+        .btn-stop::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow: 0 0 0 rgba(239, 68, 68, 0);
+            transition: box-shadow 220ms;
+        }
+
+        .btn-stop:hover::after {
+            box-shadow: 0 0 36px rgba(239, 68, 68, 0.18);
+        }
+
+        .btn-stop .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.28), rgba(239, 68, 68, 0.12));
+            pointer-events: none;
+            animation: ripple 600ms linear;
+            will-change: transform, opacity;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        // Global state variables
+        let currentStep = 0;
+        let steps = [];
+        let isIntroductionActive = false;
+        let currentUtterance = null;
+        let speechRate = 0.85;
+        let speechPitch = 0.9;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // DOM Elements
+            const profilePic = document.querySelector(".profile-pic");
+            const bgColor = document.getElementById("bg-color");
+            const wave = document.querySelector(".wave");
+            const nav = document.getElementById("mainNav");
+            const introBtn = document.getElementById('intro-btn');
+            const stopBtn = document.getElementById('stop-btn');
+
+            // Initialize event listeners
+            initializeEventListeners();
+
+            function initializeEventListeners() {
+                // Introduction/Stop buttons
+                if (introBtn) {
+                    introBtn.addEventListener('click', handleIntroClick);
+                }
+
+                if (stopBtn) {
+                    stopBtn.addEventListener('click', handleStopClick);
+                }
+
+                // Profile hover effect
+                if (profilePic && bgColor && nav) {
+                    profilePic.addEventListener("mouseenter", handleProfileMouseEnter);
+                    profilePic.addEventListener("mouseleave", handleProfileMouseLeave);
+                }
+
+                // Show wave after coin flip animation ends
+                if (profilePic && wave) {
+                    profilePic.addEventListener("animationend", handleProfileAnimationEnd);
+                }
+
+                // Scroll reveal animation for sections
+                initializeScrollReveal();
+
+                // Initialize voice controls
+                initializeVoiceControls();
+            }
+
+            function handleIntroClick(e) {
+                createRipple(introBtn, e);
+                toggleButtons();
+                startIntroductionSequence();
+            }
+
+            function handleStopClick(e) {
+                createRipple(stopBtn, e);
+                stopIntroductionSequence();
+                toggleButtons();
+            }
+
+            function handleProfileMouseEnter() {
+                bgColor.classList.add("light");
+                nav.classList.add("opacity-0");
+            }
+
+            function handleProfileMouseLeave() {
+                bgColor.classList.remove("light");
+                nav.classList.remove("opacity-0");
+            }
+
+            function handleProfileAnimationEnd(e) {
+                if (e.animationName === "coinFlip") {
+                    wave.classList.remove("opacity-0");
+                    wave.classList.add("opacity-100");
+                }
+            }
+
+            function initializeScrollReveal() {
+                const sections = ["skills", "projects", "certificates"];
+                sections.forEach(id => {
+                    const section = document.getElementById(id);
+                    if (!section) return;
+
+                    // lower threshold and negative top rootMargin to account for fixed nav on small screens
+                    const observer = new IntersectionObserver((entries, obs) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                section.classList.remove("opacity-0", "translate-y-10");
+                                section.classList.add("opacity-100", "translate-y-0");
+                                obs.unobserve(section);
+                            }
+                        });
+                    }, {
+                        threshold: 0.05,
+                        rootMargin: "-96px 0px -10% 0px"
+                    });
+
+                    observer.observe(section);
+                });
+            }
+
+            function initializeVoiceControls() {
+                const voiceControlsHTML = `
           <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
             <button id="voice-speed-up" class="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform" title="Increase voice speed">
               <i class="ph-speaker-high text-lg"></i>
@@ -887,905 +888,953 @@
           </div>
         `;
 
-        document.body.insertAdjacentHTML('beforeend', voiceControlsHTML);
+                document.body.insertAdjacentHTML('beforeend', voiceControlsHTML);
 
-        // Add voice control event listeners
-        document.getElementById('voice-speed-up')?.addEventListener('click', () => {
-          speechRate = Math.min(speechRate + 0.05, 1.2);
-          updateSpeechStatus(`Speed: ${speechRate.toFixed(2)}x`);
-        });
+                // Add voice control event listeners
+                document.getElementById('voice-speed-up')?.addEventListener('click', () => {
+                    speechRate = Math.min(speechRate + 0.05, 1.2);
+                    updateSpeechStatus(`Speed: ${speechRate.toFixed(2)}x`);
+                });
 
-        document.getElementById('voice-speed-down')?.addEventListener('click', () => {
-          speechRate = Math.max(speechRate - 0.05, 0.6);
-          updateSpeechStatus(`Speed: ${speechRate.toFixed(2)}x`);
-        });
+                document.getElementById('voice-speed-down')?.addEventListener('click', () => {
+                    speechRate = Math.max(speechRate - 0.05, 0.6);
+                    updateSpeechStatus(`Speed: ${speechRate.toFixed(2)}x`);
+                });
 
-        document.getElementById('voice-pause')?.addEventListener('click', () => {
-          if (window.speechSynthesis.speaking) {
-            if (window.speechSynthesis.paused) {
-              window.speechSynthesis.resume();
-              document.getElementById('voice-pause').innerHTML = '<i class="ph-pause text-lg"></i>';
-              updateSpeechStatus('Resumed');
-            } else {
-              window.speechSynthesis.pause();
-              document.getElementById('voice-pause').innerHTML = '<i class="ph-play text-lg"></i>';
-              updateSpeechStatus('Paused');
+                document.getElementById('voice-pause')?.addEventListener('click', () => {
+                    if (window.speechSynthesis.speaking) {
+                        if (window.speechSynthesis.paused) {
+                            window.speechSynthesis.resume();
+                            document.getElementById('voice-pause').innerHTML = '<i class="ph-pause text-lg"></i>';
+                            updateSpeechStatus('Resumed');
+                        } else {
+                            window.speechSynthesis.pause();
+                            document.getElementById('voice-pause').innerHTML = '<i class="ph-play text-lg"></i>';
+                            updateSpeechStatus('Paused');
+                        }
+                    }
+                });
             }
-          }
+
+            function updateSpeechStatus(message) {
+                // Create or update status message
+                let statusEl = document.getElementById('voice-status');
+                if (!statusEl) {
+                    statusEl = document.createElement('div');
+                    statusEl.id = 'voice-status';
+                    statusEl.className = 'fixed bottom-24 right-6 bg-indigo-600 text-white px-3 py-1 rounded-lg text-sm opacity-0 transition-opacity';
+                    document.body.appendChild(statusEl);
+                }
+
+                statusEl.textContent = message;
+                statusEl.classList.remove('opacity-0');
+                statusEl.classList.add('opacity-100');
+
+                setTimeout(() => {
+                    statusEl.classList.remove('opacity-100');
+                    statusEl.classList.add('opacity-0');
+                }, 1500);
+            }
         });
-      }
 
-      function updateSpeechStatus(message) {
-        // Create or update status message
-        let statusEl = document.getElementById('voice-status');
-        if (!statusEl) {
-          statusEl = document.createElement('div');
-          statusEl.id = 'voice-status';
-          statusEl.className = 'fixed bottom-24 right-6 bg-indigo-600 text-white px-3 py-1 rounded-lg text-sm opacity-0 transition-opacity';
-          document.body.appendChild(statusEl);
+        // ✅ Toggle between Intro and Stop buttons
+        function toggleButtons() {
+            const introBtn = document.getElementById('intro-btn');
+            const stopBtn = document.getElementById('stop-btn');
+
+            if (introBtn && stopBtn) {
+                introBtn.classList.toggle('hidden');
+                stopBtn.classList.toggle('hidden');
+            }
         }
 
-        statusEl.textContent = message;
-        statusEl.classList.remove('opacity-0');
-        statusEl.classList.add('opacity-100');
+        // ✅ Stop introduction sequence
+        function stopIntroductionSequence() {
+            // Cancel any ongoing speech
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+            }
 
-        setTimeout(() => {
-          statusEl.classList.remove('opacity-100');
-          statusEl.classList.add('opacity-0');
-        }, 1500);
-      }
-    });
+            // Show nav again
+            const nav = document.getElementById('mainNav');
+            if (nav) {
+                nav.classList.remove('opacity-0', 'pointer-events-none');
+            }
 
-    // ✅ Toggle between Intro and Stop buttons
-    function toggleButtons() {
-      const introBtn = document.getElementById('intro-btn');
-      const stopBtn = document.getElementById('stop-btn');
+            // Reset state
+            currentStep = 0;
+            steps = [];
+            isIntroductionActive = false;
+            currentUtterance = null;
 
-      if (introBtn && stopBtn) {
-        introBtn.classList.toggle('hidden');
-        stopBtn.classList.toggle('hidden');
-      }
-    }
-
-    // ✅ Stop introduction sequence
-    function stopIntroductionSequence() {
-      // Cancel any ongoing speech
-      if ('speechSynthesis' in window) {
-        speechSynthesis.cancel();
-      }
-
-      // Show nav again
-      const nav = document.getElementById('mainNav');
-      if (nav) {
-        nav.classList.remove('opacity-0', 'pointer-events-none');
-      }
-
-      // Reset state
-      currentStep = 0;
-      steps = [];
-      isIntroductionActive = false;
-      currentUtterance = null;
-
-      // Reset pause button
-      const pauseBtn = document.getElementById('voice-pause');
-      if (pauseBtn) {
-        pauseBtn.innerHTML = '<i class="ph-pause text-lg"></i>';
-      }
-    }
-
-    // ✅ Start the introduction sequence with multiple messages
-    function startIntroductionSequence() {
-      // Replace the existing `steps` array in the `startIntroductionSequence()` function with this:
-
-      steps = [
-        {
-          message: "Hello, I am Krish. Welcome to my digital portfolio. I bridge creativity with cutting-edge technology to build intelligent solutions that solve real-world problems. Let me walk you through my expertise, projects, and accomplishments.",
-          section: "home"
-        },
-        {
-          message: "My technical arsenal spans multiple domains. In web development, I craft responsive interfaces with HTML5, CSS3, and JavaScript, backed by PHP for robust server-side logic. My machine learning expertise includes Python programming with Pandas and NumPy for data manipulation, Scikit-learn for implementing algorithms, and Convolutional Neural Networks for complex pattern recognition. I specialize in comprehensive data preprocessing pipelines and create insightful visualizations using Matplotlib and Seaborn. In artificial intelligence, I build intelligent agents using LangChain and LangGraph for automated workflows. For data persistence, I design efficient schemas with MySQL and MariaDB. My development toolkit includes VS Code for coding, Google Colab for ML experimentation, and Jupyter Notebook for interactive data analysis.",
-          section: "skills"
-        },
-        {
-          message: "Now, let me highlight my key projects. First, Aura – my Intelligent Personal AI Assistant. This isn't just another voice assistant; it's a complete desktop automation system that understands natural language commands to control your computer, automate complex workflows, and manage tasks through both voice and text interfaces. It reduces manual operations by seventy percent through intelligent automation.",
-          section: "projects"
-        },
-        {
-          message: "My second major project is the Home Theater Management System, developed for an actual audio-visual company. This enterprise platform manages complete home theater projects from design to installation. It features role-based access for administrators, designers, and clients, integrated acoustic calculators for perfect sound optimization, and automated material estimation tools that cut project planning time by forty percent.",
-          section: "projects"
-        },
-        {
-          message: "I built an Intelligent Salary Prediction Engine using machine learning. This system analyzes fifteen-plus factors including experience, education, and location to forecast employee compensation with ninety-two percent accuracy. It compares Linear Regression for baseline predictions against Random Forest algorithms for complex patterns, with interactive dashboards visualizing salary trends and model performance.",
-          section: "projects"
-        },
-        {
-          message: "Additional innovations include Quick Deals – an AI-powered shopping assistant that compares marketplace listings using XGBoost models to find the best products, and KrushiSeva – a smart agriculture platform developed during the SIH Hackathon that provides farmers with precise fertilizer recommendations based on soil analysis.",
-          section: "projects"
-        },
-        {
-          message: "Finally, this portfolio itself represents my frontend craftsmanship, built with modern HTML5, CSS3 animations, and Tailwind CSS for responsive design. Each project demonstrates my philosophy of creating technology that's both powerful and practical.",
-          section: "projects"
-        },
-        {
-          message: "Let me now walk you through my professional certifications. I completed a Machine Learning Internship at LaunchED Global, where I mastered data preprocessing, implemented supervised learning algorithms, and deployed functional ML solutions using Flask.",
-          section: "certificates"
-        },
-        {
-          message: "For real-world experience, I developed a comprehensive Home Theater Management System for Beat Audio Company. This responsive web platform streamlines custom construction projects with role-based access control and specialized PHP calculators for acoustic analysis.",
-          section: "certificates"
-        },
-        {
-          message: "I earned IBM's AI Agents certification, specializing in designing autonomous AI architectures using LangChain and LangGraph. This training equipped me with skills in agentic workflows, memory handling, and automated task orchestration.",
-          section: "certificates"
-        },
-        {
-          message: "I was selected as a finalist for the prestigious WIE HackX2025 Hackathon at Nirma University, demonstrating rapid problem-solving and technical agility in a competitive environment.",
-          section: "certificates"
-        },
-        {
-          message: "I participated in the Smart India Hackathon at Ganpat University, collaborating on innovative technical solutions and demonstrating effective teamwork against top engineering talent.",
-          section: "certificates"
-        },
-        {
-          message: "At the Artificial Intelligence Symposium 2024, I explored sustainable technologies and emerging AI trends, gaining critical insights into future industry applications.",
-          section: "certificates"
-        },
-        {
-          message: "I served as a Coordinator for the 'Talk on Mathematics' event during Convergence 2024, managing logistics and facilitating expert sessions at this National Level Technical Symposium.",
-          section: "certificates"
-        },
-        {
-          message: "In addition to my technical skills, I possess strong problem-solving abilities, effective communication skills, and a collaborative mindset developed through team projects and hackathons. I'm passionate about creating technology that makes a real difference, whether it's automating daily tasks, predicting trends, or empowering farmers with data-driven insights.",
-          section: "certificates"
-        },
-        {
-          message: "Thank you for visiting my portfolio. I'm always open to new opportunities, collaborations, and challenging projects. Feel free to connect with me through any of the contact methods provided. Let's build something amazing together.",
-          section: "contact"
+            // Reset pause button
+            const pauseBtn = document.getElementById('voice-pause');
+            if (pauseBtn) {
+                pauseBtn.innerHTML = '<i class="ph-pause text-lg"></i>';
+            }
         }
-      ];
-      currentStep = 0;
-      isIntroductionActive = true;
 
-      const nav = document.getElementById('mainNav');
-      if (nav) {
-        nav.classList.add('opacity-0', 'pointer-events-none');
-      }
+        // ✅ Start the introduction sequence with multiple messages
+        function startIntroductionSequence() {
+            // Replace the existing `steps` array in the `startIntroductionSequence()` function with this:
 
-      if (!('speechSynthesis' in window)) {
-        alert("Your browser doesn't support voice synthesis. Please use Chrome or Edge for the full experience.");
-        toggleButtons();
-        return;
-      }
+            steps = [
+                {
+                    message: "Hello, I am Krish. Welcome to my digital portfolio. I bridge creativity with cutting-edge technology to build intelligent solutions that solve real-world problems. Let me walk you through my expertise, projects, and accomplishments.",
+                    section: "home"
+                },
+                {
+                    message: "My technical arsenal spans multiple domains. In web development, I craft responsive interfaces with HTML5, CSS3, and JavaScript, backed by PHP for robust server-side logic. My machine learning expertise includes Python programming with Pandas and NumPy for data manipulation, Scikit-learn for implementing algorithms, and Convolutional Neural Networks for complex pattern recognition. I specialize in comprehensive data preprocessing pipelines and create insightful visualizations using Matplotlib and Seaborn. In artificial intelligence, I build intelligent agents using LangChain and LangGraph for automated workflows. For data persistence, I design efficient schemas with MySQL and MariaDB. My development toolkit includes VS Code for coding, Google Colab for ML experimentation, and Jupyter Notebook for interactive data analysis.",
+                    section: "skills"
+                },
+                {
+                    message: "Now, let me highlight my key projects. First, Aura – my Intelligent Personal AI Assistant. This isn't just another voice assistant; it's a complete desktop automation system that understands natural language commands to control your computer, automate complex workflows, and manage tasks through both voice and text interfaces. It reduces manual operations by seventy percent through intelligent automation.",
+                    section: "projects"
+                },
+                {
+                    message: "My second major project is the Home Theater Management System, developed for an actual audio-visual company. This enterprise platform manages complete home theater projects from design to installation. It features role-based access for administrators, designers, and clients, integrated acoustic calculators for perfect sound optimization, and automated material estimation tools that cut project planning time by forty percent.",
+                    section: "projects"
+                },
+                {
+                    message: "I built an Intelligent Salary Prediction Engine using machine learning. This system analyzes fifteen-plus factors including experience, education, and location to forecast employee compensation with ninety-two percent accuracy. It compares Linear Regression for baseline predictions against Random Forest algorithms for complex patterns, with interactive dashboards visualizing salary trends and model performance.",
+                    section: "projects"
+                },
+                {
+                    message: "Additional innovations include Quick Deals – an AI-powered shopping assistant that compares marketplace listings using XGBoost models to find the best products, and KrushiSeva – a smart agriculture platform developed during the SIH Hackathon that provides farmers with precise fertilizer recommendations based on soil analysis.",
+                    section: "projects"
+                },
+                {
+                    message: "Finally, this portfolio itself represents my frontend craftsmanship, built with modern HTML5, CSS3 animations, and Tailwind CSS for responsive design. Each project demonstrates my philosophy of creating technology that's both powerful and practical.",
+                    section: "projects"
+                },
+                {
+                    message: "Let me now walk you through my professional certifications. I completed a Machine Learning Internship at LaunchED Global, where I mastered data preprocessing, implemented supervised learning algorithms, and deployed functional ML solutions using Flask.",
+                    section: "certificates"
+                },
+                {
+                    message: "For real-world experience, I developed a comprehensive Home Theater Management System for Beat Audio Company. This responsive web platform streamlines custom construction projects with role-based access control and specialized PHP calculators for acoustic analysis.",
+                    section: "certificates"
+                },
+                {
+                    message: "I earned IBM's AI Agents certification, specializing in designing autonomous AI architectures using LangChain and LangGraph. This training equipped me with skills in agentic workflows, memory handling, and automated task orchestration.",
+                    section: "certificates"
+                },
+                {
+                    message: "I was selected as a finalist for the prestigious WIE HackX2025 Hackathon at Nirma University, demonstrating rapid problem-solving and technical agility in a competitive environment.",
+                    section: "certificates"
+                },
+                {
+                    message: "I participated in the Smart India Hackathon at Ganpat University, collaborating on innovative technical solutions and demonstrating effective teamwork against top engineering talent.",
+                    section: "certificates"
+                },
+                {
+                    message: "At the Artificial Intelligence Symposium 2024, I explored sustainable technologies and emerging AI trends, gaining critical insights into future industry applications.",
+                    section: "certificates"
+                },
+                {
+                    message: "I served as a Coordinator for the 'Talk on Mathematics' event during Convergence 2024, managing logistics and facilitating expert sessions at this National Level Technical Symposium.",
+                    section: "certificates"
+                },
+                {
+                    message: "In addition to my technical skills, I possess strong problem-solving abilities, effective communication skills, and a collaborative mindset developed through team projects and hackathons. I'm passionate about creating technology that makes a real difference, whether it's automating daily tasks, predicting trends, or empowering farmers with data-driven insights.",
+                    section: "certificates"
+                },
+                {
+                    message: "Thank you for visiting my portfolio. I'm always open to new opportunities, collaborations, and challenging projects. Feel free to connect with me through any of the contact methods provided. Let's build something amazing together.",
+                    section: "contact"
+                }
+            ];
+            currentStep = 0;
+            isIntroductionActive = true;
 
-      // Use the ultra-fast version
-      if (speechSynthesis.getVoices().length === 0) {
-        speechSynthesis.addEventListener('voiceschanged', () => {
-          runSequenceUltraFast();
+            const nav = document.getElementById('mainNav');
+            if (nav) {
+                nav.classList.add('opacity-0', 'pointer-events-none');
+            }
+
+            if (!('speechSynthesis' in window)) {
+                alert("Your browser doesn't support voice synthesis. Please use Chrome or Edge for the full experience.");
+                toggleButtons();
+                return;
+            }
+
+            // Use the ultra-fast version
+            if (speechSynthesis.getVoices().length === 0) {
+                speechSynthesis.addEventListener('voiceschanged', () => {
+                    runSequenceUltraFast();
+                });
+            } else {
+                runSequenceUltraFast();
+            }
+        }
+
+        // ✅ Recursive sequence runner
+        function runSequenceUltraFast() {
+            if (!isIntroductionActive || currentStep >= steps.length) {
+                if (currentStep >= steps.length) {
+                    const nav = document.getElementById('mainNav');
+                    if (nav) {
+                        nav.classList.remove('opacity-0', 'pointer-events-none');
+                    }
+                    toggleButtons();
+                    updateSpeechStatus('Introduction completed');
+                }
+                return;
+            }
+
+            const step = steps[currentStep];
+
+            // Start scrolling immediately (non-blocking)
+            if (step.section && step.section !== "home") {
+                const section = document.getElementById(step.section);
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+
+            // Speak immediately (runs in parallel with scrolling)
+            const utterance = new SpeechSynthesisUtterance(step.message);
+            setIndianEnglishVoice(utterance);
+            utterance.pitch = speechPitch;
+            utterance.rate = speechRate;
+            utterance.volume = 1;
+
+            currentUtterance = utterance;
+
+            utterance.onend = () => {
+                currentUtterance = null;
+                if (isIntroductionActive) {
+                    currentStep++;
+                    // Minimal delay of 10ms for browser to catch up
+                    setTimeout(() => {
+                        runSequenceUltraFast();
+                    }, 10);
+                }
+            };
+
+            utterance.onerror = () => {
+                currentUtterance = null;
+                if (isIntroductionActive) {
+                    currentStep++;
+                    setTimeout(() => {
+                        runSequenceUltraFast();
+                    }, 10);
+                }
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // ✅ Scroll to section and speak message
+        function speakAndScroll(message, sectionId, callback) {
+            // Scroll first
+            if (sectionId && sectionId !== "home") {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Wait a bit for scroll to complete
+                    setTimeout(() => {
+                        speakMessage(message, callback);
+                    }, 500);
+                } else {
+                    speakMessage(message, callback);
+                }
+            } else {
+                speakMessage(message, callback);
+            }
+        }
+
+        function speakMessage(message, callback) {
+            if ('speechSynthesis' in window) {
+                // Cancel any previous speech
+                if (currentUtterance) {
+                    speechSynthesis.cancel();
+                }
+
+                const utterance = new SpeechSynthesisUtterance(message);
+                currentUtterance = utterance;
+
+                // Set Indian English voice if available
+                setIndianEnglishVoice(utterance);
+
+                utterance.pitch = speechPitch;
+                utterance.rate = speechRate;
+                utterance.volume = 1;
+
+                utterance.onend = function () {
+                    currentUtterance = null;
+                    if (typeof callback === "function" && isIntroductionActive) {
+                        setTimeout(callback, 500);
+                    }
+                };
+
+                utterance.onerror = function (event) {
+                    console.error('Speech synthesis error:', event.error);
+                    currentUtterance = null;
+                    if (typeof callback === "function" && isIntroductionActive) {
+                        setTimeout(callback, 500);
+                    }
+                };
+
+                // Add a small delay to ensure proper speech start
+                setTimeout(() => {
+                    speechSynthesis.speak(utterance);
+                }, 100);
+            } else {
+                if (typeof callback === "function" && isIntroductionActive) {
+                    setTimeout(callback, 1000);
+                }
+            }
+        }
+
+        // ✅ Helper: Create ripple effect
+        function createRipple(btn, e) {
+            const rect = btn.getBoundingClientRect();
+            const diameter = Math.max(rect.width, rect.height) * 1.2;
+            const radius = diameter / 2;
+            const circle = document.createElement('span');
+            circle.classList.add('ripple');
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - radius}px`;
+            circle.style.top = `${e.clientY - rect.top - radius}px`;
+            btn.appendChild(circle);
+
+            btn.classList.add('btn-clicked');
+            setTimeout(() => btn.classList.remove('btn-clicked'), 160);
+            setTimeout(() => circle.remove(), 650);
+        }
+
+        // ✅ Helper: Set Indian English voice
+        function setIndianEnglishVoice(utterance) {
+            const assignVoice = () => {
+                const voices = speechSynthesis.getVoices();
+
+                console.log("Available voices:", voices.map(v => v.name));
+
+                const strongMaleVoices = [
+                    // Windows - Deep male voices
+                    'Microsoft David Desktop',      // Deep, resonant
+                    'Microsoft Mark',               // Clear, strong
+                    'Microsoft Guy',               // Confident tone
+
+                    // macOS - Powerful male voices
+                    'Alex',                        // Deep, natural male
+                    'Daniel',                      // British male, authoritative
+                    'Fred',                        // Deep American male
+
+                    'Google UK English Male',
+                    'Google US English Male',
+
+                    'en-US-Wavenet-D',
+                    'en-GB-Wavenet-B',
+                    'Matthew',
+                    'Joey',
+                    'Justin',
+
+                    // Browser default male voices
+                    'Microsoft David',
+                    'Microsoft George',
+                    'Chrome OS English (US) Male'
+                ];
+
+                let strongVoice = null;
+
+                strongVoice = voices.find(v =>
+                    v.name.includes('David') ||
+                    v.name.includes('Mark') ||
+                    v.name.includes('Guy') ||
+                    v.name.includes('Alex')
+                );
+
+                // 2. Look for deep male indicators
+                if (!strongVoice) {
+                    strongVoice = voices.find(v =>
+                        v.name.toLowerCase().includes('male') &&
+                        (v.name.toLowerCase().includes('deep') ||
+                            v.name.toLowerCase().includes('low') ||
+                            v.name.toLowerCase().includes('strong'))
+                    );
+                }
+
+                // 3. Look for priority strong voices
+                if (!strongVoice) {
+                    for (const voiceName of strongMaleVoices) {
+                        strongVoice = voices.find(v =>
+                            v.name.includes(voiceName) ||
+                            v.name.toLowerCase().includes(voiceName.toLowerCase())
+                        );
+                        if (strongVoice) break;
+                    }
+                }
+
+                // 4. Fallback to any male voice
+                if (!strongVoice) {
+                    strongVoice = voices.find(v =>
+                        v.name.toLowerCase().includes('male') ||
+                        v.name.includes('David') ||
+                        v.name.includes('Mark') ||
+                        v.name.includes('Alex')
+                    );
+                }
+
+                // 5. Ultimate fallback
+                if (!strongVoice && voices.length > 0) {
+                    strongVoice = voices[0];
+                }
+
+                if (strongVoice) {
+                    utterance.voice = strongVoice;
+                    // STRONG MALE VOICE SETTINGS:
+                    utterance.pitch = 0.9;      // Lower pitch for deeper voice
+                    utterance.rate = 0.99;       // Slightly slower for authority
+                    utterance.volume = 0.8;      // Full volume
+
+                    console.log("Using strong voice:", strongVoice.name);
+                }
+            };
+
+            if (speechSynthesis.getVoices().length === 0) {
+                speechSynthesis.addEventListener('voiceschanged', assignVoice);
+            } else {
+                assignVoice();
+            }
+        }
+
+        // ✅ Helper: Update speech status (accessible globally)
+        function updateSpeechStatus(message) {
+            // Create or update status message
+            let statusEl = document.getElementById('voice-status');
+            if (!statusEl) {
+                statusEl = document.createElement('div');
+                statusEl.id = 'voice-status';
+                statusEl.className = 'fixed bottom-24 right-6 bg-indigo-600 text-white px-3 py-1 rounded-lg text-sm opacity-0 transition-opacity';
+                document.body.appendChild(statusEl);
+            }
+
+            statusEl.textContent = message;
+            statusEl.classList.remove('opacity-0');
+            statusEl.classList.add('opacity-100');
+
+            setTimeout(() => {
+                statusEl.classList.remove('opacity-100');
+                statusEl.classList.add('opacity-0');
+            }, 1500);
+        }
+
+        document.getElementById("myDiv").addEventListener("contextmenu", function (e) {
+            e.preventDefault();
         });
-      } else {
-        runSequenceUltraFast();
-      }
-    }
 
-    // ✅ Recursive sequence runner
-    function runSequenceUltraFast() {
-      if (!isIntroductionActive || currentStep >= steps.length) {
-        if (currentStep >= steps.length) {
-          const nav = document.getElementById('mainNav');
-          if (nav) {
-            nav.classList.remove('opacity-0', 'pointer-events-none');
-          }
-          toggleButtons();
-          updateSpeechStatus('Introduction completed');
-        }
-        return;
-      }
-
-      const step = steps[currentStep];
-
-      // Start scrolling immediately (non-blocking)
-      if (step.section && step.section !== "home") {
-        const section = document.getElementById(step.section);
-        if (section) {
-          section.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }
-
-      // Speak immediately (runs in parallel with scrolling)
-      const utterance = new SpeechSynthesisUtterance(step.message);
-      setIndianEnglishVoice(utterance);
-      utterance.pitch = speechPitch;
-      utterance.rate = speechRate;
-      utterance.volume = 1;
-
-      currentUtterance = utterance;
-
-      utterance.onend = () => {
-        currentUtterance = null;
-        if (isIntroductionActive) {
-          currentStep++;
-          // Minimal delay of 10ms for browser to catch up
-          setTimeout(() => {
-            runSequenceUltraFast();
-          }, 10);
-        }
-      };
-
-      utterance.onerror = () => {
-        currentUtterance = null;
-        if (isIntroductionActive) {
-          currentStep++;
-          setTimeout(() => {
-            runSequenceUltraFast();
-          }, 10);
-        }
-      };
-
-      speechSynthesis.speak(utterance);
-    }
-
-    // ✅ Scroll to section and speak message
-    function speakAndScroll(message, sectionId, callback) {
-      // Scroll first
-      if (sectionId && sectionId !== "home") {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          // Wait a bit for scroll to complete
-          setTimeout(() => {
-            speakMessage(message, callback);
-          }, 500);
-        } else {
-          speakMessage(message, callback);
-        }
-      } else {
-        speakMessage(message, callback);
-      }
-    }
-
-    function speakMessage(message, callback) {
-      if ('speechSynthesis' in window) {
-        // Cancel any previous speech
-        if (currentUtterance) {
-          speechSynthesis.cancel();
-        }
-
-        const utterance = new SpeechSynthesisUtterance(message);
-        currentUtterance = utterance;
-
-        // Set Indian English voice if available
-        setIndianEnglishVoice(utterance);
-
-        utterance.pitch = speechPitch;
-        utterance.rate = speechRate;
-        utterance.volume = 1;
-
-        utterance.onend = function () {
-          currentUtterance = null;
-          if (typeof callback === "function" && isIntroductionActive) {
-            setTimeout(callback, 500);
-          }
-        };
-
-        utterance.onerror = function (event) {
-          console.error('Speech synthesis error:', event.error);
-          currentUtterance = null;
-          if (typeof callback === "function" && isIntroductionActive) {
-            setTimeout(callback, 500);
-          }
-        };
-
-        // Add a small delay to ensure proper speech start
-        setTimeout(() => {
-          speechSynthesis.speak(utterance);
-        }, 100);
-      } else {
-        if (typeof callback === "function" && isIntroductionActive) {
-          setTimeout(callback, 1000);
-        }
-      }
-    }
-
-    // ✅ Helper: Create ripple effect
-    function createRipple(btn, e) {
-      const rect = btn.getBoundingClientRect();
-      const diameter = Math.max(rect.width, rect.height) * 1.2;
-      const radius = diameter / 2;
-      const circle = document.createElement('span');
-      circle.classList.add('ripple');
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${e.clientX - rect.left - radius}px`;
-      circle.style.top = `${e.clientY - rect.top - radius}px`;
-      btn.appendChild(circle);
-
-      btn.classList.add('btn-clicked');
-      setTimeout(() => btn.classList.remove('btn-clicked'), 160);
-      setTimeout(() => circle.remove(), 650);
-    }
-
-    // ✅ Helper: Set Indian English voice
-    function setIndianEnglishVoice(utterance) {
-      const assignVoice = () => {
-        const voices = speechSynthesis.getVoices();
-
-        console.log("Available voices:", voices.map(v => v.name));
-
-        const strongMaleVoices = [
-          // Windows - Deep male voices
-          'Microsoft David Desktop',      // Deep, resonant
-          'Microsoft Mark',               // Clear, strong
-          'Microsoft Guy',               // Confident tone
-
-          // macOS - Powerful male voices
-          'Alex',                        // Deep, natural male
-          'Daniel',                      // British male, authoritative
-          'Fred',                        // Deep American male
-
-          'Google UK English Male',
-          'Google US English Male',
-
-          'en-US-Wavenet-D',
-          'en-GB-Wavenet-B',
-          'Matthew',
-          'Joey',
-          'Justin',
-
-          // Browser default male voices
-          'Microsoft David',
-          'Microsoft George',
-          'Chrome OS English (US) Male'
-        ];
-
-        let strongVoice = null;
-
-        strongVoice = voices.find(v =>
-          v.name.includes('David') ||
-          v.name.includes('Mark') ||
-          v.name.includes('Guy') ||
-          v.name.includes('Alex')
+        document.addEventListener(
+            "contextmenu",
+            function (e) {
+                e.preventDefault();
+                return false;
+            },
+            true
         );
-
-        // 2. Look for deep male indicators
-        if (!strongVoice) {
-          strongVoice = voices.find(v =>
-            v.name.toLowerCase().includes('male') &&
-            (v.name.toLowerCase().includes('deep') ||
-              v.name.toLowerCase().includes('low') ||
-              v.name.toLowerCase().includes('strong'))
-          );
-        }
-
-        // 3. Look for priority strong voices
-        if (!strongVoice) {
-          for (const voiceName of strongMaleVoices) {
-            strongVoice = voices.find(v =>
-              v.name.includes(voiceName) ||
-              v.name.toLowerCase().includes(voiceName.toLowerCase())
-            );
-            if (strongVoice) break;
-          }
-        }
-
-        // 4. Fallback to any male voice
-        if (!strongVoice) {
-          strongVoice = voices.find(v =>
-            v.name.toLowerCase().includes('male') ||
-            v.name.includes('David') ||
-            v.name.includes('Mark') ||
-            v.name.includes('Alex')
-          );
-        }
-
-        // 5. Ultimate fallback
-        if (!strongVoice && voices.length > 0) {
-          strongVoice = voices[0];
-        }
-
-        if (strongVoice) {
-          utterance.voice = strongVoice;
-          // STRONG MALE VOICE SETTINGS:
-          utterance.pitch = 0.9;      // Lower pitch for deeper voice
-          utterance.rate = 0.99;       // Slightly slower for authority
-          utterance.volume = 0.8;      // Full volume
-
-          console.log("Using strong voice:", strongVoice.name);
-        }
-      };
-
-      if (speechSynthesis.getVoices().length === 0) {
-        speechSynthesis.addEventListener('voiceschanged', assignVoice);
-      } else {
-        assignVoice();
-      }
-    }
-
-    // ✅ Helper: Update speech status (accessible globally)
-    function updateSpeechStatus(message) {
-      // Create or update status message
-      let statusEl = document.getElementById('voice-status');
-      if (!statusEl) {
-        statusEl = document.createElement('div');
-        statusEl.id = 'voice-status';
-        statusEl.className = 'fixed bottom-24 right-6 bg-indigo-600 text-white px-3 py-1 rounded-lg text-sm opacity-0 transition-opacity';
-        document.body.appendChild(statusEl);
-      }
-
-      statusEl.textContent = message;
-      statusEl.classList.remove('opacity-0');
-      statusEl.classList.add('opacity-100');
-
-      setTimeout(() => {
-        statusEl.classList.remove('opacity-100');
-        statusEl.classList.add('opacity-0');
-      }, 1500);
-    }
-
-    document.getElementById("myDiv").addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
-  </script>
+    </script>
 
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav id="mainNav" class="fixed top-0 w-full z-50 glass-effect transition-opacity duration-500">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-      <div class="flex justify-between items-center">
-        <div class="text-2xl font-bold font-display gradient-text">Krish</div>
-        <div class="flex space-x-4 md:space-x-8">
-          <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Home</a>
-          <a href="#skills" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Skills</a>
-          <a href="#projects" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Projects</a>
-          <a href="#certificates"
-            class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Certificates</a>
-          <a href="#contact" class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Contact</a>
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed top-0 w-full z-50 glass-effect transition-opacity duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold font-display gradient-text">Krish</div>
+                <div class="flex space-x-4 md:space-x-8">
+                    <a href="#home"
+                        class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Home</a>
+                    <a href="#skills"
+                        class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Skills</a>
+                    <a href="#projects"
+                        class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Projects</a>
+                    <a href="#certificates"
+                        class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Certificates</a>
+                    <a href="#contact"
+                        class="text-gray-300 hover:text-white transition-colors text-sm md:text-base">Contact</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <div id="bg-color" class="absolute inset-0"></div>
-    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20"></div>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div id="bg-color" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20"></div>
 
-    <!-- Floating Background Elements -->
-    <div class="hero-bg-animation">
-      <div class="floating-element"></div>
-      <div class="floating-element"></div>
-      <div class="floating-element"></div>
-    </div>
-
-    <div class="relative z-10 text-center px-6">
-      <div class="profile-container mb-8">
-        <img src="images/krish1.jpg" alt="Profile"
-          class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-500/50 shadow-2xl animate-scaleIn profile-pic">
-      </div>
-      <h1 class="text-6xl font-bold mb-4 font-display animate-fadeInUp stagger-1">
-        <span class="animate-hi">Hi, I'm</span>
-        <span class="animate-name gradient-text">Krish</span>
-
-        <span id="hand-emoji" class="wave">👋</span>
-      </h1>
-      <p class="typewriter text-xl text-gray-300 mb-8 max-w-2xl mx-auto" id="typing-text">
-        Web Developer AI & ML Enthusiast | Turning Ideas into Intelligent Code
-      </p>
-
-      <div class="text-1xl font-bold mb-4 font-display animate-fadeInUp stagger-1">
-        <button id="intro-btn" class="btn-intro" type="button" aria-label="Open introduction">
-          <b>Introduction</b>
-          <span class="visually-hidden"> Opens introduction section</span>
-        </button>
-        <button id="stop-btn" class="btn-stop hidden" type="button" aria-label="Stop introduction">
-          <b>Stop</b>
-          <span class="visually-hidden"> introduction</span>
-        </button>
-      </div>
-
-      <div class="flex justify-center space-x-10 animate-fadeInUp stagger-4" style="margin-top: 80px;">
-        <a href="https://github.com/Kansagara-Krish" style="font-size: 50px;" target="_blank" class="hover-lift">
-          <i class="fa fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/krish-kansagara-6093352b4/" style="font-size: 50px;" target="_blank"
-          class="hover-lift">
-          <i class="fa fa-linkedin"></i>
-        </a>
-        <a href="mailto:kansagara.krish2006@gmail.com" style="font-size: 50px;" class="hover-lift">
-          <i class="fa fa-envelope"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="py-20 px-6 opacity-0 translate-y-10 transition-all duration-1000">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12 font-display">Technical Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-        <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-database text-3xl mb-3 text-purple-400"></i>
-          <h3 class="font-semibold">Web Development</h3>
-          <p class="text-sm text-gray-400 mt-2">HTML, CSS, JavaScript ,PHP</p>
-        </div>
-        <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-chart-bar text-3xl mb-3 text-pink-400"></i>
-          <h3 class="font-semibold">Machine Learning</h3>
-          <p class="text-sm text-gray-400 mt-2">Python,Pandas, NumPy,Scikit-learn, CNNs, Data
-            Preprocessing,Matplotlib , Seaborn </p>
-        </div>
-        <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-git-branch text-3xl mb-3 text-green-400"></i>
-          <h3 class="font-semibold">Artificial Intelligence</h3>
-          <p class="text-sm text-gray-400 mt-2">LangChain, LangGraph</p>
-        </div>
-        <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-leaf text-3xl mb-3 text-teal-400"></i>
-          <h3 class="font-semibold">Databases</h3>
-          <p class="text-sm text-gray-400 mt-2">MySQL, MariaDB</p>
-        </div>
-        <div class="skill-card rounded-xl p-6 text-center hover-lift">
-          <i class="ph-rocket text-3xl mb-3 text-red-400"></i>
-          <h3 class="font-semibold">Tools</h3>
-          <p class="text-sm text-gray-400 mt-2">VS Code, Google Colab, Jupiter Notebook</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 px-6 opacity-0 translate-y-10 transition-all duration-1000">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12 font-display">Featured Projects</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Card-1 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="h-48 rounded-lg mb-4 overflow-hidden">
-            <img
-              src="data:image/jpeg;base64,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"
-              alt="Aura Ai"
-              class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Aura – Personal AI Assistant</h3>
-          <p class="text-gray-400 mb-4">A sophisticated AI-powered personal assistant designed to automate daily system
-            tasks and control laptop functions. Aura seamlessly integrates voice and text commands to execute complex
-            workflows, significantly enhancing user productivity through intelligent, hands-free device management.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Python</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">AI & ML</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Automation</span>
-          </div>
+        <!-- Floating Background Elements -->
+        <div class="hero-bg-animation">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
         </div>
 
-        <!-- Card-2-->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="h-48 rounded-lg mb-4 overflow-hidden">
-            <img src="images/ml_1.jpg" alt="CSV Analyzer"
-              class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Salary Prediction</h3>
-          <p class="text-gray-400 mb-4">A comparative machine learning analysis utilizing Linear Regression and Random
-            Forest algorithms to predict employee salaries with high precision. Trained on complex real-world datasets,
-            this model identifies key compensation trends to provide accurate, data-driven financial insights.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Matplotlib</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Seaborn</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Numpy</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Pandas</span>
-          </div>
-          <div class="flex justify-center">
-            <a href="https://colab.research.google.com/drive/1gECrIEp1EXrGzUvMQqKh5gErNORrxhBy?usp=sharing"
-              target="_blank"
-              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
-              <i class="ph-github-logo mr-1"></i>View Code
-            </a>
-          </div>
-        </div>
+        <div class="relative z-10 text-center px-6">
+            <div class="profile-container mb-8">
+                <img src="images/krish1.jpg" alt="Profile"
+                    class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-indigo-500/50 shadow-2xl animate-scaleIn profile-pic">
+            </div>
+            <h1 class="text-6xl font-bold mb-4 font-display animate-fadeInUp stagger-1">
+                <span class="animate-hi">Hi, I'm</span>
+                <span class="animate-name gradient-text">Krish</span>
 
-        <!-- Card-3 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="h-48 rounded-lg mb-4 overflow-hidden">
-            <img src="images/web_page.png" alt="Aura Ai"
-              class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-          </div>
-          <div style="align-items: justify;">
-            <h3 class="text-xl font-semibold mb-2">Home Theater Management System</h3>
-          </div>
-          <br>
-          <p class="text-gray-400 mb-4">A responsive web platform that streamlines the design and construction of custom
-            home theater projects. It features role-based access control, built-in acoustic calculators, and secure data
-            handling to ensure accurate measurements and organized execution for every client.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">HTML / CSS</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">JS</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">PHP</span>
-          </div>
-        </div>
-
-        <!-- Card-4-->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="h-48 rounded-lg mb-4 overflow-hidden">
-            <img src="images/Quick_deal_logo.png" alt="Quick Deals — AI Shopping Assistant"
-              class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-          </div>
-
-          <div style="text-align: justify;">
-            <h3 class="text-xl font-semibold mb-2">Quick Deals — AI-powered Shopping Assistant</h3>
-            <p class="text-gray-400 mb-4">
-              An intelligent shopping assistant that compares marketplace listings to recommend the best products using
-              an XGBoost model. It features a chat-driven interface and predictive analytics for price drops, ensuring
-              users always secure the most competitive deals available.
+                <span id="hand-emoji" class="wave">👋</span>
+            </h1>
+            <p class="typewriter text-xl text-gray-300 mb-8 max-w-2xl mx-auto" id="typing-text">
+                Web Developer AI & ML Enthusiast | Turning Ideas into Intelligent Code
             </p>
-          </div>
 
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">HTML / CSS</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">JS</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Flask</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">XGBOOST</span>
-          </div>
-
-          <div class="flex justify-center">
-            <a href="https://quick-delas-ai-powerd-smart-shopping.onrender.com"
-              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
-              Open Dashboard
-            </a>
-          </div>
-        </div>
-
-        <!-- Card-5 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="h-48 rounded-lg mb-4 overflow-hidden">
-            <img src="images/khrusi_seva.png" alt="KrushiSeva – Smart Agriculture Platform"
-              class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-          </div>
-
-          <div style="text-align: justify;">
-            <h3 class="text-xl font-semibold mb-2">KrushiSeva – Smart Agriculture Platform</h3>
-            <p class="text-gray-400 mb-4">
-              A digital agriculture platform empowering farmers with precise fertilizer and crop recommendations. Built
-              to enhance soil health and maximize yield, this intuitive tool leverages data insights to promote
-              sustainable farming practices and ensure accessible, expert guidance for rural communities. </p>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">SIH Hackathon</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Team work</span>
-          </div>
-
-          <div class="flex justify-center">
-            <a href="https://krushi-seva1.vercel.app/"
-              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
-              Visit Website
-            </a>
-          </div>
-        </div>
-
-        <!--Card-6-->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="h-48 rounded-lg mb-4 overflow-hidden">
-            <img src="images/PortFolioSnap.png" alt="Personal Portfolio"
-              class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Personal Portfolio</h3>
-          <p class="text-gray-400 mb-4">A modern, fully responsive personal website designed to showcase technical
-            A modern, fully responsive personal website engineered to showcase technical expertise and creative
-            projects. Built with a focus on clean aesthetics and seamless user experience, this platform effectively
-            highlights professional achievements through an interactive interface.
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">HTML</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">CSS</span>
-            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Tailwind</span>
-          </div>
-          <div class="flex justify-center">
-            <a href="https://github.com/Kansagara-Krish/portfolio-" target="_blank"
-              class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
-              <i class="ph-github-logo mr-1"></i>View Code
-            </a>
-          </div>
-        </div>
-      </div>
-  </section>
-
-  <!-- Certificates Section -->
-  <section id="certificates" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12 font-display">Certificates & Certifications</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- Certificate 1 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/LaunchED.jpg" alt="Microsoft" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">Machine Learning Internship</h3>
-              <p class="text-sm text-gray-400 mb-1">LaunchED Global</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: Augest 2025</p>
-              <p class="text-sm text-gray-300 mb-3">An intensive program focused on building predictive models using
-                Python. Mastered data preprocessing with Pandas and NumPy, implemented supervised learning algorithms
-                via Scikit-learn, and successfully deployed functional machine learning solutions using Flask for
-                real-world applications.</p>
+            <div class="text-1xl font-bold mb-4 font-display animate-fadeInUp stagger-1">
+                <button id="intro-btn" class="btn-intro" type="button" aria-label="Open introduction">
+                    <b>Introduction</b>
+                    <span class="visually-hidden"> Opens introduction section</span>
+                </button>
+                <button id="stop-btn" class="btn-stop hidden" type="button" aria-label="Stop introduction">
+                    <b>Stop</b>
+                    <span class="visually-hidden"> introduction</span>
+                </button>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="images/LaunchED Certi.png" target="_blank"
-              class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-certificate mr-1"></i>Verify Certificate
-            </a>
-          </div>
-        </div>
 
-        <!-- Certificate 2 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/beat_audio_logo.png" alt="Google" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">Web Devlopment Project</h3>
-              <p class="text-sm text-gray-400 mb-1">Mancave</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: July 2025</p>
-              <p class="text-sm text-gray-300 mb-3">A comprehensive responsive web platform engineered to streamline the
-                entire lifecycle of custom construction and home theater projects. It integrates granular role-based
-                access control, secure client data management, and specialized PHP calculators for precise acoustic
-                analysis and material estimation, ensuring accurate resource planning and organized project execution.
+            <div class="flex justify-center space-x-10 animate-fadeInUp stagger-4" style="margin-top: 80px;">
+                <a href="https://github.com/Kansagara-Krish" style="font-size: 50px;" target="_blank"
+                    class="hover-lift">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/krish-kansagara-6093352b4/" style="font-size: 50px;"
+                    target="_blank" class="hover-lift">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="mailto:kansagara.krish2006@gmail.com" style="font-size: 50px;" class="hover-lift">
+                    <i class="fa fa-envelope"></i>
+                </a>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="images/Beat_Audio_Project_complition.jpg" target="_blank"
-              class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-certificate mr-1"></i>Verify Certificate
-            </a>
-          </div>
         </div>
+    </section>
 
-        <!-- Certificate 3 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/ibm_logo.png" alt="IBM" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">IBM AI Agents</h3>
-              <p class="text-sm text-gray-400 mb-1">IBM</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: November 2023</p>
-              <p class="text-sm text-gray-300 mb-3">
-                A specialized certification in designing autonomous AI architectures. Mastered agentic workflows using
-                LangChain and LangGraph, implementing memory handling, tool-calling, and state management to build
-                intelligent agents capable of complex reasoning and automated task orchestration.
-              </p>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 opacity-0 translate-y-10 transition-all duration-1000">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 font-display">Technical Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                <div class="skill-card rounded-xl p-6 text-center hover-lift">
+                    <i class="ph-database text-3xl mb-3 text-purple-400"></i>
+                    <h3 class="font-semibold">Web Development</h3>
+                    <p class="text-sm text-gray-400 mt-2">HTML, CSS, JavaScript ,PHP</p>
+                </div>
+                <div class="skill-card rounded-xl p-6 text-center hover-lift">
+                    <i class="ph-chart-bar text-3xl mb-3 text-pink-400"></i>
+                    <h3 class="font-semibold">Machine Learning</h3>
+                    <p class="text-sm text-gray-400 mt-2">Python,Pandas, NumPy,Scikit-learn, CNNs, Data
+                        Preprocessing,Matplotlib , Seaborn </p>
+                </div>
+                <div class="skill-card rounded-xl p-6 text-center hover-lift">
+                    <i class="ph-git-branch text-3xl mb-3 text-green-400"></i>
+                    <h3 class="font-semibold">Artificial Intelligence</h3>
+                    <p class="text-sm text-gray-400 mt-2">LangChain, LangGraph</p>
+                </div>
+                <div class="skill-card rounded-xl p-6 text-center hover-lift">
+                    <i class="ph-leaf text-3xl mb-3 text-teal-400"></i>
+                    <h3 class="font-semibold">Databases</h3>
+                    <p class="text-sm text-gray-400 mt-2">MySQL, MariaDB</p>
+                </div>
+                <div class="skill-card rounded-xl p-6 text-center hover-lift">
+                    <i class="ph-rocket text-3xl mb-3 text-red-400"></i>
+                    <h3 class="font-semibold">Tools</h3>
+                    <p class="text-sm text-gray-400 mt-2">VS Code, Google Colab, Jupiter Notebook</p>
+                </div>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="images/ibm_certificate.pdf" target="_blank"
-              class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-certificate mr-1"></i>Verify Certificate
-            </a>
-          </div>
         </div>
+    </section>
 
-        <!-- Certificate 4 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/Hackx_logo.jpg" alt="IBM" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">WIE Hackx2025 Participation</h3>
-              <p class="text-sm text-gray-400 mb-1">Nirma University</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: Octomber 2025</p>
-              <p class="text-sm text-gray-300 mb-3">
-                Selected as a finalist for the prestigious WIE HackX2025 Hackathon at Nirma University. Collaborated in
-                a high-intensity environment to architect and prototype innovative technical solutions. Demonstrated
-                rapid problem-solving, technical agility, and effective teamwork while competing against top engineering
-                talent from across the region. </p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 opacity-0 translate-y-10 transition-all duration-1000">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 font-display">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card-1 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="h-48 rounded-lg mb-4 overflow-hidden">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="Aura Ai"
+                            class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Aura – Personal AI Assistant</h3>
+                    <p class="text-gray-400 mb-4">A sophisticated AI-powered personal assistant designed to automate
+                        daily system
+                        tasks and control laptop functions. Aura seamlessly integrates voice and text commands to
+                        execute complex
+                        workflows, significantly enhancing user productivity through intelligent, hands-free device
+                        management.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">AI & ML</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Automation</span>
+                    </div>
+                </div>
+
+                <!-- Card-2-->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="h-48 rounded-lg mb-4 overflow-hidden">
+                        <img src="images/ml_1.jpg" alt="CSV Analyzer"
+                            class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Salary Prediction</h3>
+                    <p class="text-gray-400 mb-4">A comparative machine learning analysis utilizing Linear Regression
+                        and Random
+                        Forest algorithms to predict employee salaries with high precision. Trained on complex
+                        real-world datasets,
+                        this model identifies key compensation trends to provide accurate, data-driven financial
+                        insights.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Matplotlib</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Seaborn</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Numpy</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Pandas</span>
+                    </div>
+                    <div class="flex justify-center">
+                        <a href="https://colab.research.google.com/drive/1gECrIEp1EXrGzUvMQqKh5gErNORrxhBy?usp=sharing"
+                            target="_blank"
+                            class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
+                            <i class="ph-github-logo mr-1"></i>View Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card-3 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="h-48 rounded-lg mb-4 overflow-hidden">
+                        <img src="images/web_page.png" alt="Aura Ai"
+                            class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div style="align-items: justify;">
+                        <h3 class="text-xl font-semibold mb-2">Home Theater Management System</h3>
+                    </div>
+                    <br>
+                    <p class="text-gray-400 mb-4">A responsive web platform that streamlines the design and construction
+                        of custom
+                        home theater projects. It features role-based access control, built-in acoustic calculators, and
+                        secure data
+                        handling to ensure accurate measurements and organized execution for every client.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">HTML / CSS</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">JS</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">PHP</span>
+                    </div>
+                </div>
+
+                <!-- Card-4-->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="h-48 rounded-lg mb-4 overflow-hidden">
+                        <img src="images/Quick_deal_logo.png" alt="Quick Deals — AI Shopping Assistant"
+                            class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+
+                    <div style="text-align: justify;">
+                        <h3 class="text-xl font-semibold mb-2">Quick Deals — AI-powered Shopping Assistant</h3>
+                        <p class="text-gray-400 mb-4">
+                            An intelligent shopping assistant that compares marketplace listings to recommend the best
+                            products using
+                            an XGBoost model. It features a chat-driven interface and predictive analytics for price
+                            drops, ensuring
+                            users always secure the most competitive deals available.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">HTML / CSS</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">JS</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Flask</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">XGBOOST</span>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="https://quick-delas-ai-powerd-smart-shopping.onrender.com"
+                            class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
+                            Open Dashboard
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card-5 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="h-48 rounded-lg mb-4 overflow-hidden">
+                        <img src="images/khrusi_seva.png" alt="KrushiSeva – Smart Agriculture Platform"
+                            class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+
+                    <div style="text-align: justify;">
+                        <h3 class="text-xl font-semibold mb-2">KrushiSeva – Smart Agriculture Platform</h3>
+                        <p class="text-gray-400 mb-4">
+                            A digital agriculture platform empowering farmers with precise fertilizer and crop
+                            recommendations. Built
+                            to enhance soil health and maximize yield, this intuitive tool leverages data insights to
+                            promote
+                            sustainable farming practices and ensure accessible, expert guidance for rural communities.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">SIH
+                            Hackathon</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Team work</span>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="https://krushi-seva1.vercel.app/"
+                            class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!--Card-6-->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="h-48 rounded-lg mb-4 overflow-hidden">
+                        <img src="images/PortFolioSnap.png" alt="Personal Portfolio"
+                            class="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Personal Portfolio</h3>
+                    <p class="text-gray-400 mb-4">A modern, fully responsive personal website designed to showcase
+                        technical
+                        A modern, fully responsive personal website engineered to showcase technical expertise and
+                        creative
+                        projects. Built with a focus on clean aesthetics and seamless user experience, this platform
+                        effectively
+                        highlights professional achievements through an interactive interface.
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">HTML</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">CSS</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">Tailwind</span>
+                    </div>
+                    <div class="flex justify-center">
+                        <a href="https://github.com/Kansagara-Krish/portfolio-" target="_blank"
+                            class="w-64 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm text-center">
+                            <i class="ph-github-logo mr-1"></i>View Code
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="images/Hackx Nirma University.jpg" target="_blank"
-              class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-certificate mr-1"></i>Verify Certificate
-            </a>
-          </div>
-        </div>
+    </section>
 
-        <!-- Certificate 5 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/smart_india_hackathon.png" alt="SIH" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">SIH Hackthon Participation</h3>
-              <p class="text-sm text-gray-400 mb-1">Ganpat University</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: 2024</p>
-              <p class="text-sm text-gray-300 mb-3">
-                Participated in the prestigious SIH Hackathon at Ganpat University. Collaborated in
-                a high-intensity environment to architect and prototype innovative technical solutions. Demonstrated
-                rapid problem-solving, technical agility, and effective teamwork while competing against top engineering
-                talent from across the region. </p>
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 font-display">Certificates & Certifications</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Certificate 1 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/LaunchED.jpg" alt="Microsoft" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Machine Learning Internship</h3>
+                            <p class="text-sm text-gray-400 mb-1">LaunchED Global</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: Augest 2025</p>
+                            <p class="text-sm text-gray-300 mb-3">An intensive program focused on building predictive
+                                models using
+                                Python. Mastered data preprocessing with Pandas and NumPy, implemented supervised
+                                learning algorithms
+                                via Scikit-learn, and successfully deployed functional machine learning solutions using
+                                Flask for
+                                real-world applications.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="images/LaunchED Certi.png" target="_blank"
+                            class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition-colors">
+                            <i class="ph-certificate mr-1"></i>Verify Certificate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/beat_audio_logo.png" alt="Google" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Web Devlopment Project</h3>
+                            <p class="text-sm text-gray-400 mb-1">Mancave</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: July 2025</p>
+                            <p class="text-sm text-gray-300 mb-3">A comprehensive responsive web platform engineered to
+                                streamline the
+                                entire lifecycle of custom construction and home theater projects. It integrates
+                                granular role-based
+                                access control, secure client data management, and specialized PHP calculators for
+                                precise acoustic
+                                analysis and material estimation, ensuring accurate resource planning and organized
+                                project execution.
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="images/Beat_Audio_Project_complition.jpg" target="_blank"
+                            class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+                            <i class="ph-certificate mr-1"></i>Verify Certificate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/ibm_logo.png" alt="IBM" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">IBM AI Agents</h3>
+                            <p class="text-sm text-gray-400 mb-1">IBM</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: November 2023</p>
+                            <p class="text-sm text-gray-300 mb-3">
+                                A specialized certification in designing autonomous AI architectures. Mastered agentic
+                                workflows using
+                                LangChain and LangGraph, implementing memory handling, tool-calling, and state
+                                management to build
+                                intelligent agents capable of complex reasoning and automated task orchestration.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="images/ibm_certificate.pdf" target="_blank"
+                            class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+                            <i class="ph-certificate mr-1"></i>Verify Certificate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificate 4 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/Hackx_logo.jpg" alt="IBM" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">WIE Hackx2025 Participation</h3>
+                            <p class="text-sm text-gray-400 mb-1">Nirma University</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: Octomber 2025</p>
+                            <p class="text-sm text-gray-300 mb-3">
+                                Selected as a finalist for the prestigious WIE HackX2025 Hackathon at Nirma University.
+                                Collaborated in
+                                a high-intensity environment to architect and prototype innovative technical solutions.
+                                Demonstrated
+                                rapid problem-solving, technical agility, and effective teamwork while competing against
+                                top engineering
+                                talent from across the region. </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="images/Hackx Nirma University.jpg" target="_blank"
+                            class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+                            <i class="ph-certificate mr-1"></i>Verify Certificate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificate 5 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/smart_india_hackathon.png" alt="SIH" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">SIH Hackthon Participation</h3>
+                            <p class="text-sm text-gray-400 mb-1">Ganpat University</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: 2024</p>
+                            <p class="text-sm text-gray-300 mb-3">
+                                Participated in the prestigious SIH Hackathon at Ganpat University. Collaborated in
+                                a high-intensity environment to architect and prototype innovative technical solutions.
+                                Demonstrated
+                                rapid problem-solving, technical agility, and effective teamwork while competing against
+                                top engineering
+                                talent from across the region. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 6 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/ai_webinar_logo.png" alt="AI Symposium" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">AI Symposium Participation</h3>
+                            <p class="text-sm text-gray-400 mb-1">Ganpat University</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: October 2024</p>
+                            <p class="text-sm text-gray-300 mb-3">
+                                Actively participated in the Artificial Intelligence Symposium 2024 hosted by Ganpat
+                                University. Engaged with the theme "Unlocking the Frontiers of AI" to explore
+                                sustainable technologies. Acquired critical insights into emerging industry trends and
+                                future
+                                AI applications through expert-led technical sessions and professional networking.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="images/ai_webinar.pdf" target="_blank"
+                            class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+                            <i class="ph-certificate mr-1"></i>Verify Certificate
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificate 7 -->
+                <div class="project-card rounded-xl p-6 hover-lift">
+                    <div class="flex items-start mb-4">
+                        <img src="images/convergence.png" alt="Convergence 2024" class="w-12 h-12 rounded-lg mr-4">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Convergence '24 Coordinator</h3>
+                            <p class="text-sm text-gray-400 mb-1">Ganpat University</p>
+                            <p class="text-sm text-gray-500 mb-2">Completed: March 2024</p>
+                            <p class="text-sm text-gray-300 mb-3">
+                                Served as a Coordinator for the "Talk on Mathematics" event during Convergence 2024, a
+                                National Level
+                                Technical Symposium. Managed event logistics, facilitated expert sessions, and ensured
+                                seamless
+                                execution while fostering technical engagement among participants during this two-day
+                                summit.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="images/Convergence.pdf" target="_blank"
+                            class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+                            <i class="ph-certificate mr-1"></i>Verify Certificate
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6 font-display">Let's Connect</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                I'm always interested in new opportunities and collaborations.
+                Feel free to reach out!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kansagara.krish2006@gmail.com" target="_blank"
+                    class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
+                    <i class="ph-envelope mr-2"></i>
+                    Send Email
+                </a>
 
-        <!-- Certificate 6 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/ai_webinar_logo.png" alt="AI Symposium" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">AI Symposium Participation</h3>
-              <p class="text-sm text-gray-400 mb-1">Ganpat University</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: October 2024</p>
-              <p class="text-sm text-gray-300 mb-3">
-                Actively participated in the Artificial Intelligence Symposium 2024 hosted by Ganpat
-                University. Engaged with the theme "Unlocking the Frontiers of AI" to explore
-                sustainable technologies. Acquired critical insights into emerging industry trends and future
-                AI applications through expert-led technical sessions and professional networking.
-              </p>
+                <a href="resume.pdf" download
+                    class="px-8 py-3 rounded-lg font-semibold border border-indigo-500 text-indigo-400 hover:bg-indigo-500/10 transition-all">
+                    <i class="ph-download mr-2"></i>
+                    Download Resume
+                </a>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="images/ai_webinar.pdf" target="_blank"
-              class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-certificate mr-1"></i>Verify Certificate
-            </a>
-          </div>
         </div>
+    </section>
 
-        <!-- Certificate 7 -->
-        <div class="project-card rounded-xl p-6 hover-lift">
-          <div class="flex items-start mb-4">
-            <img src="images/convergence.png" alt="Convergence 2024" class="w-12 h-12 rounded-lg mr-4">
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-1">Convergence '24 Coordinator</h3>
-              <p class="text-sm text-gray-400 mb-1">Ganpat University</p>
-              <p class="text-sm text-gray-500 mb-2">Completed: March 2024</p>
-              <p class="text-sm text-gray-300 mb-3">
-                Served as a Coordinator for the "Talk on Mathematics" event during Convergence 2024, a National Level
-                Technical Symposium. Managed event logistics, facilitated expert sessions, and ensured seamless
-                execution while fostering technical engagement among participants during this two-day summit.
-              </p>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="images/Convergence.pdf" target="_blank"
-              class="w-full text-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
-              <i class="ph-certificate mr-1"></i>Verify Certificate
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-6 font-display">Let's Connect</h2>
-      <p class="text-xl text-gray-300 mb-8">
-        I'm always interested in new opportunities and collaborations.
-        Feel free to reach out!
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kansagara.krish2006@gmail.com" target="_blank"
-          class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
-          <i class="ph-envelope mr-2"></i>
-          Send Email
-        </a>
-
-        <a href="resume.pdf" download
-          class="px-8 py-3 rounded-lg font-semibold border border-indigo-500 text-indigo-400 hover:bg-indigo-500/10 transition-all">
-          <i class="ph-download mr-2"></i>
-          Download Resume
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-8 text-center text-gray-400 border-t border-gray-800">
-    <p>&copy; 2025 Krish. Crafted with passion and precision.</p>
-  </footer>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-400 border-t border-gray-800">
+        <p>&copy; 2025 Krish. Crafted with passion and precision.</p>
+    </footer>
 </body>
 
 </html>
